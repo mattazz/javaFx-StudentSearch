@@ -1,20 +1,17 @@
 package com.example.lab1gui;
 
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.sql.*;
-import com.example.lab1gui.DatabaseConnection;
-import com.example.lab1gui.Student;
 
-public class HelloController {
+public class SearchController {
+    public Button mainMenuBtn;
     @FXML
     private TextField studentSearch;
     @FXML
@@ -39,7 +36,7 @@ public class HelloController {
     private ObservableList<Student> students = FXCollections.observableArrayList();
 
     @FXML
-    public void initialize(){ //this basically connects the student prop getters to the column values
+    public void initialize() { //this basically connects the student prop getters to the column values
         columnGivenName.setCellValueFactory(new PropertyValueFactory<>("givenName"));
         columnLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         columnPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
@@ -53,7 +50,7 @@ public class HelloController {
         String searchQuery = studentSearch.getText();
 
         try (Connection connection = DatabaseConnection.getConnection();
-        Statement statement = connection.createStatement()){
+             Statement statement = connection.createStatement()) {
             String query = String.format("SELECT givenName, LName, phoneNumber, GPA FROM person WHERE givenName LIKE '%%%s%%'", searchQuery); // search not implemented yet
             ResultSet resultSet = statement.executeQuery(query);
 
@@ -63,9 +60,9 @@ public class HelloController {
             students.clear();
             boolean studentFound = false;
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 //Loops and adds the props to the students
-                students.add(new Student(resultSet.getString("givenName"), resultSet.getString("LName"), resultSet.getString("phoneNumber"),resultSet.getFloat("GPA") ));
+                students.add(new Student(resultSet.getString("givenName"), resultSet.getString("LName"), resultSet.getString("phoneNumber"), resultSet.getFloat("GPA")));
                 studentFound = true;
             }
 
@@ -77,8 +74,15 @@ public class HelloController {
 
             // adds all the students into the rows
             studentTable.setItems(students);
-        } catch (SQLException e){
+        } catch (SQLException e) {
             noticeMessage.setText("Database Error: " + e.getMessage());
         }
+    }
+
+    public void backToMain(ActionEvent actionEvent) {
+        String scene = "/com/example/lab1gui/select-view.fxml";
+        Stage stage = (Stage) mainMenuBtn.getScene().getWindow();
+
+        SceneManager.changeScene(stage, scene, noticeMessage);
     }
 }
