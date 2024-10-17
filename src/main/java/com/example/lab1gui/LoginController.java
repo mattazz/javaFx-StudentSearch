@@ -1,5 +1,6 @@
 package com.example.lab1gui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +16,7 @@ public class LoginController {
     public PasswordField passwordInput;
     public Label loginMessage;
     public Button loginButton;
+    public Button debugLoginButton;
 
 
     protected void changeScene(String fxmlFile){
@@ -80,4 +82,9 @@ public class LoginController {
         }
     }
 
+    public void onDebugLogin(ActionEvent actionEvent) {
+        String scene = "/com/example/lab1gui/select-view.fxml";
+        Stage stage = (Stage) loginButton.getScene().getWindow();
+        SceneManager.changeScene(stage, scene, loginMessage);
+    }
 }

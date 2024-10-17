@@ -10,10 +10,18 @@ public class SelectController {
 
     public Label selectMessage;
     public Button searchViewBtn;
+    public Button createViewBtn;
 
 
     public void goToSearchView(ActionEvent actionEvent) {
         String scene = "/com/example/lab1gui/search-view.fxml";
+        Stage stage = (Stage) searchViewBtn.getScene().getWindow();
+
+        SceneManager.changeScene(stage, scene, selectMessage );
+    }
+
+    public void goToCreateView(ActionEvent actionEvent) {
+        String scene = "/com/example/lab1gui/create-view.fxml";
         Stage stage = (Stage) searchViewBtn.getScene().getWindow();
 
         SceneManager.changeScene(stage, scene, selectMessage );
