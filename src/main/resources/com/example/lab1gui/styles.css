@@ -1,0 +1,42 @@
+/* styles.css */
+
+/* Button styles */
+.button {
+    -fx-background-color: #4CAF50; /* Green background */
+    -fx-text-fill: white; /* White text */
+    -fx-font-size: 14px; /* Font size */
+    -fx-padding: 10px 20px; /* Padding */
+    -fx-background-radius: 5px; /* Rounded corners */
+    -fx-border-radius: 5px; /* Rounded corners */
+    -fx-cursor: hand; /* Pointer cursor on hover */
+}
+
+.button:hover {
+    -fx-background-color: #45a049; /* Darker green on hover */
+}
+
+.button:pressed {
+    -fx-background-color: #3e8e41; /* Even darker green when pressed */
+}
+
+/* TextField styles */
+.text-field {
+    -fx-background-color: #f0f0f0; /* Light grey background */
+    -fx-text-fill: #333; /* Dark text */
+    -fx-font-size: 14px; /* Font size */
+    -fx-padding: 10px; /* Padding */
+    -fx-background-radius: 5px; /* Rounded corners */
+    -fx-border-color: #ccc; /* Light grey border */
+    -fx-border-radius: 5px; /* Rounded corners */
+}
+
+.text-field:focused {
+    -fx-border-color: #4CAF50; /* Green border when focused */
+}
+
+/* Label styles */
+.label {
+    -fx-font-size: 16px; /* Font size */
+    -fx-text-fill: #333; /* Dark text */
+    -fx-padding: 5px 0; /* Padding */
+}
