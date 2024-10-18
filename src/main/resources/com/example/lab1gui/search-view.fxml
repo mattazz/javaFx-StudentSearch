@@ -29,6 +29,7 @@
        <TableColumn fx:id="columnLastName" prefWidth="75.0" text="Last Name" />
        <TableColumn fx:id="columnPhoneNumber" prefWidth="105.0" text="Phone Number" />
          <TableColumn fx:id="columnGPA" prefWidth="75.0" text="GPA" />
+       <TableColumn fx:id="columnRecordId" prefWidth="75.0" text="record id" />
      </columns>
    </TableView>
     <Label fx:id="connectionStatusMessage" />

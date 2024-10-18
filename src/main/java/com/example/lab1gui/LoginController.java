@@ -6,10 +6,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.Objects;
 
 public class LoginController {
     public TextField usernameInput;
@@ -17,7 +20,13 @@ public class LoginController {
     public Label loginMessage;
     public Button loginButton;
     public Button debugLoginButton;
+    public ImageView imageView;
 
+
+    public void initialize(){
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/lab1gui/logo.png")));
+        imageView.setImage(image);
+    }
 
     protected void changeScene(String fxmlFile){
         try{
@@ -63,6 +72,7 @@ public class LoginController {
         String password = passwordInput.getText();
 
         if (username.isEmpty() || password.isEmpty()){
+            loginMessage.setStyle("-fx-text-fill: red");
             loginMessage.setText("Please fill in all the fields for login.");
         } else{
 

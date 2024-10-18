@@ -17,8 +17,6 @@ public class SearchController {
     @FXML
     private Label noticeMessage;
     @FXML
-    private Label welcomeText;
-    @FXML
     private Label connectionStatusMessage;
     @FXML
     private TableView<Student> studentTable; //Student class type is important  -> See initialization
@@ -30,6 +28,8 @@ public class SearchController {
     private TableColumn<Student, String> columnPhoneNumber;
     @FXML
     private TableColumn<Student, Float> columnGPA;
+    @FXML
+    private TableColumn<Student, String> columnRecordId;
 
     // This stores the properties of the student for later displaying in columns. Stored as student object
     @FXML
@@ -41,6 +41,7 @@ public class SearchController {
         columnLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         columnPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         columnGPA.setCellValueFactory(new PropertyValueFactory<>("gpa"));
+        columnRecordId.setCellValueFactory(new PropertyValueFactory<>("recordId"));
     }
 
     @FXML
@@ -51,10 +52,11 @@ public class SearchController {
 
         try (Connection connection = DatabaseConnection.getConnection();
              Statement statement = connection.createStatement()) {
-            String query = String.format("SELECT givenName, LName, phoneNumber, GPA FROM person WHERE givenName LIKE '%%%s%%'", searchQuery); // search not implemented yet
+            String query = String.format("SELECT givenName, LName, phoneNumber, GPA, personId FROM person WHERE givenName LIKE '%%%s%%'", searchQuery); // search not implemented yet
             ResultSet resultSet = statement.executeQuery(query);
 
             System.out.println("Connection: " + statement);
+            connectionStatusMessage.setStyle("-fx-text-fill: green");
             connectionStatusMessage.setText("Connection active: Student_DB");
 
             students.clear();
@@ -62,19 +64,22 @@ public class SearchController {
 
             while (resultSet.next()) {
                 //Loops and adds the props to the students
-                students.add(new Student(resultSet.getString("givenName"), resultSet.getString("LName"), resultSet.getString("phoneNumber"), resultSet.getFloat("GPA")));
+                students.add(new Student(resultSet.getString("givenName"), resultSet.getString("LName"), resultSet.getString("phoneNumber"), resultSet.getFloat("GPA"), resultSet.getString("personId")));
                 studentFound = true;
             }
 
             if (studentFound) {
+                noticeMessage.setStyle("-fx-text-fill: green");
                 noticeMessage.setText("Student/s found.");
             } else {
+                noticeMessage.setStyle("-fx-text-fill: red");
                 noticeMessage.setText("No student found.");
             }
 
             // adds all the students into the rows
             studentTable.setItems(students);
         } catch (SQLException e) {
+            noticeMessage.setStyle("-fx-text-fill: red");
             noticeMessage.setText("Database Error: " + e.getMessage());
         }
     }

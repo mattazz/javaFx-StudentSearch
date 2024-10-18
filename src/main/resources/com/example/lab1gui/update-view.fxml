@@ -6,9 +6,20 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.lab1gui.DeleteController">
-   <Label text="Delete Record"/>
-   <TextField fx:id="recordIDInput" promptText="Record ID"/>
-   <Button fx:id="deleteBtn" mnemonicParsing="false" text="Delete"/>
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lab1gui.UpdateController">
+   <VBox alignment="CENTER" spacing="20.0" maxWidth="400">
+      <Label text="Update a new record" />
+      <TextField fx:id="recordID" promptText="RecordID to update" />
+
+      <TextField fx:id="fName" promptText="First Name" />
+      <TextField fx:id="lName" promptText="Last Name" />
+      <TextField fx:id="role" promptText=" Role (Student / Lecturer)" />
+      <TextField fx:id="phoneNumber" promptText="Phone Number" />
+      <TextField fx:id="gpa" promptText="GPA" />
+      <Label fx:id="updateMessage" />
+      <Button onAction="#submitUpdate" mnemonicParsing="false" text="Update a Record" />
+
+      <Button onAction="#backToMain" fx:id="mainMenuBtn" text="Back to Main Menu"/>
+   </VBox>
+
 </VBox>

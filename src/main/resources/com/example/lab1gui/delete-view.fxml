@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lab1gui.SelectController">
-   <Button fx:id="searchViewBtn" text="Go to Search View" onAction="#goToSearchView"/>
-   <Button fx:id="createViewBtn" text="Go to Create View" onAction="#goToCreateView"/>
-   <Label fx:id="selectMessage"/>
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.lab1gui.DeleteController">
+   <VBox alignment="CENTER" spacing="20.0" maxWidth="400">
+   <Label text="Delete Record"/>
+   <TextField fx:id="recordIDInput" promptText="Record ID"/>
+   <Button onAction="#onDeletePressed" fx:id="deleteBtn" mnemonicParsing="false" text="Delete"/>
+   <Label fx:id="deleteMessage" />
+   </VBox>
+
+   <Button onAction="#backToMain" fx:id="mainMenuBtn" text="Back to Main Menu"/>
+
 </VBox>

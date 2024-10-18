@@ -4,15 +4,21 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.lab1gui.LoginController">
-   <Label text="User Login"/>
-   <TextField fx:id="usernameInput"/>
-   <PasswordField fx:id="passwordInput"/>
-   <Label fx:id="loginMessage"/>
-   <Button onAction="#onLogin" fx:id="loginButton" mnemonicParsing="false" text="Login"/>
-   <Button onAction="#onDebugLogin" fx:id="debugLoginButton" mnemonicParsing="false" text="Login (Debug)"/>
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lab1gui.LoginController">
+    <VBox alignment="CENTER" maxWidth="400" spacing="20.0">
+        <ImageView fx:id="imageView" fitHeight="200.0" fitWidth="200.0" />
+        <Label text="Student DB 1.0">
+         <font>
+            <Font size="21.0" />
+         </font></Label>
+        <TextField fx:id="usernameInput" />
+        <PasswordField fx:id="passwordInput" />
+        <Label fx:id="loginMessage" />
+        <Button fx:id="loginButton" mnemonicParsing="false" onAction="#onLogin" text="Login" />
+        <Button fx:id="debugLoginButton" mnemonicParsing="false" onAction="#onDebugLogin" text="Login (Debug)" />
+    </VBox>
 </VBox>
