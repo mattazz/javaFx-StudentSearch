@@ -5,40 +5,55 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class LoginController {
-    public TextField usernameInput;
-    public PasswordField passwordInput;
-    public Label loginMessage;
-    public Button loginButton;
-    public Button debugLoginButton;
-    public ImageView imageView;
+    @FXML
+    private TextField usernameInput;
+    @FXML
+    private PasswordField passwordInput;
+    @FXML
+    private Label loginMessage;
+    @FXML
+    private Button loginButton;
+    @FXML
+    private Button debugLoginButton;
+    @FXML
+    private ImageView imageView;
 
-
-    public void initialize(){
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/lab1gui/logo.png")));
-        imageView.setImage(image);
+    @FXML
+    public void initialize() {
+        try {
+            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/lab1gui/logo.png")));
+            imageView.setImage(image);
+        } catch (NullPointerException e) {
+            System.err.println("Image file not found: " + e.getMessage());
+        }
     }
 
-    protected void changeScene(String fxmlFile){
-        try{
+    @FXML
+    protected void changeScene(String fxmlFile) {
+        try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
             Parent root = fxmlLoader.load();
-            // Get the current stage
             Stage stage = (Stage) loginButton.getScene().getWindow();
-            // Set the new scene
             Scene scene = new Scene(root, 800, 600);
             stage.setScene(scene);
             stage.show();
-        } catch (IOException e){
+        } catch (IOException e) {
             loginMessage.setText("Failed to load the main view: " + e.getMessage());
         }
     }
@@ -64,34 +79,26 @@ public class LoginController {
         return false;
     }
 
-
     @FXML
-    protected  void onLogin(){
-
+    protected void onLogin() {
         String username = usernameInput.getText();
         String password = passwordInput.getText();
 
-        if (username.isEmpty() || password.isEmpty()){
+        if (username.isEmpty() || password.isEmpty()) {
             loginMessage.setStyle("-fx-text-fill: red");
             loginMessage.setText("Please fill in all the fields for login.");
-        } else{
-
-//            Authenticate with login_DB table which has cols [id] [name] [email] [password]
-
+        } else {
             boolean isAuthenticated = authenticateLogin(username, password);
 
-            if (isAuthenticated){
+            if (isAuthenticated) {
                 String scene = "/com/example/lab1gui/select-view.fxml";
                 Stage stage = (Stage) loginButton.getScene().getWindow();
                 SceneManager.changeScene(stage, scene, loginMessage);
-            } else{
-
             }
-
-
         }
     }
 
+    @FXML
     public void onDebugLogin(ActionEvent actionEvent) {
         String scene = "/com/example/lab1gui/select-view.fxml";
         Stage stage = (Stage) loginButton.getScene().getWindow();

@@ -40,3 +40,12 @@
     -fx-text-fill: #333; /* Dark text */
     -fx-padding: 5px 0; /* Padding */
 }
+
+.courseButton{
+/* modern Blue Background */
+    -fx-background-color: #2196F3;
+}
+
+.courseButton:hover {
+    -fx-background-color: #1976D2; /* Darker blue on hover */
+}

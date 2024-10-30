@@ -29,6 +29,19 @@
                 <Button fx:id="deleteViewBtn" maxWidth="Infinity" onAction="#goToDeleteView" text="Delete a Record"
                         HBox.hgrow="ALWAYS"/>
             </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                <Button styleClass="courseButton" fx:id="createCourseBtn" maxWidth="Infinity" onAction="#goToCreateCourse" text="Create a Course"
+                        HBox.hgrow="ALWAYS"/>
+                <Button styleClass="courseButton" fx:id="searchCourseBtn" maxWidth="Infinity" onAction="#goToSearchCourse" text="Search a Course"
+                        HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                <Button styleClass="courseButton" fx:id="updateCourseBtn" maxWidth="Infinity" onAction="#goToUpdateCourse" text="Update a Course"
+                        HBox.hgrow="ALWAYS"/>
+                <Button styleClass="courseButton" fx:id="deleteCourseBtn" maxWidth="Infinity" onAction="#goToDeleteCourse" text="Delete a Course"
+                        HBox.hgrow="ALWAYS"/>
+
+            </HBox>
             <HBox alignment="CENTER" maxWidth="400">
                 <Button onAction="#onLogOutClick" fx:id="logOut" text="LOGOUT"/>
             </HBox>

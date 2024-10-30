@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.layout.HBox?>
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lab1gui.CourseSearchController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <Label alignment="CENTER" text="Course SEARCH">
+      <font>
+         <Font size="19.0" />
+      </font>
+   </Label>
+   <TextField fx:id="courseSearch" promptText="List all Courses" />
+
+    <Label text="Leave the search blank to search the whole database" />
+    <Button styleClass="courseButton" onAction="#onSubmitSearch" text="Search" />
+   <TableView fx:id="courseTable" prefHeight="200.0" prefWidth="200.0">
+     <columns>
+       <TableColumn fx:id="columnCourseTitle" prefWidth="175.0" text="Course Title" />
+       <TableColumn fx:id="columnDescription" prefWidth="275.0" text="Course Description" />
+       <TableColumn fx:id="columnRecordId" prefWidth="75.0" text="record id" />
+     </columns>
+   </TableView>
+    <Label fx:id="connectionStatusMessage" />
+    <Label fx:id="noticeMessage" textFill="green" />
+    <Button styleClass="courseButton" onAction="#backToMain" fx:id="mainMenuBtn" text="Back to Main Menu"/>
+</VBox>
+
